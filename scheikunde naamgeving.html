@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Organische Chemie — Naamgeving</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --vermiljoen: #E83A1E;
+    --vermiljoen-licht: #fdecea;
+    --vermiljoen-donker: #b52c14;
+    --kobalt: #1A3F8F;
+    --kobalt-licht: #e8edf8;
+    --kobalt-mid: #2e5bbf;
+    --wit: #ffffff;
+    --grijs: #f4f4f2;
+    --tekst: #1a1a1a;
+    --tekst-zacht: #666;
+    --border: #e0e0dc;
+    --correct-bg: #e8f5e9;
+    --correct-border: #388e3c;
+    --correct-tekst: #1b5e20;
+    --fout-bg: #fdecea;
+    --fout-border: #E83A1E;
+    --fout-tekst: #b52c14;
+    --reveal-bg: #e8edf8;
+    --reveal-border: #1A3F8F;
+    --reveal-tekst: #1A3F8F;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--grijs);
+    color: var(--tekst);
+    min-height: 100vh;
+  }
+
+  header {
+    background: var(--kobalt);
+    color: var(--wit);
+    padding: 1.25rem 2rem;
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    border-bottom: 4px solid var(--vermiljoen);
+  }
+
+  header h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+  }
+
+  header span {
+    font-size: 0.85rem;
+    opacity: 0.7;
+  }
+
+  .container {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+  }
+
+  .top-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .mode-btn {
+    padding: 9px 20px;
+    border-radius: 6px;
+    border: 2px solid var(--kobalt);
+    background: var(--wit);
+    color: var(--kobalt);
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.15s;
+  }
+
+  .mode-btn:hover { background: var(--kobalt-licht); }
+
+  .mode-btn.active {
+    background: var(--kobalt);
+    color: var(--wit);
+  }
+
+  .score-area {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    color: var(--tekst-zacht);
+  }
+
+  .score-num {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--kobalt);
+  }
+
+  .reset-btn {
+    padding: 7px 14px;
+    border-radius: 6px;
+    border: 1.5px solid var(--border);
+    background: var(--wit);
+    color: var(--tekst-zacht);
+    cursor: pointer;
+    font-size: 13px;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .reset-btn:hover { border-color: var(--vermiljoen); color: var(--vermiljoen); }
+
+  .card {
+    background: var(--wit);
+    border-radius: 12px;
+    border: 1.5px solid var(--border);
+    padding: 1.75rem;
+    margin-bottom: 1.25rem;
+    box-shadow: 0 2px 8px rgba(26,63,143,0.06);
+  }
+
+  .q-label {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--kobalt);
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+  }
+
+  .q-naam {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem;
+    color: var(--tekst);
+    letter-spacing: 0.01em;
+    margin-bottom: 0.25rem;
+  }
+
+  .svg-wrap {
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem 0;
+  }
+
+  .options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 1.25rem;
+  }
+
+  .opt-btn {
+    padding: 14px 10px;
+    border-radius: 8px;
+    border: 1.5px solid var(--border);
+    background: var(--wit);
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--tekst);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.12s, background 0.12s;
+    text-align: center;
+    line-height: 1.4;
+    min-height: 56px;
+  }
+
+  .opt-btn:hover:not(:disabled) {
+    border-color: var(--kobalt);
+    background: var(--kobalt-licht);
+  }
+
+  .opt-btn:disabled { cursor: default; }
+
+  .opt-btn.correct {
+    background: var(--correct-bg);
+    border-color: var(--correct-border);
+    color: var(--correct-tekst);
+    font-weight: 500;
+  }
+
+  .opt-btn.wrong {
+    background: var(--fout-bg);
+    border-color: var(--fout-border);
+    color: var(--fout-tekst);
+  }
+
+  .opt-btn.reveal {
+    background: var(--reveal-bg);
+    border-color: var(--reveal-border);
+    color: var(--reveal-tekst);
+    font-weight: 500;
+  }
+
+  .feedback {
+    margin-top: 1rem;
+    font-size: 14px;
+    font-weight: 500;
+    min-height: 22px;
+    color: var(--tekst-zacht);
+  }
+
+  .feedback.goed { color: var(--correct-border); }
+  .feedback.fout { color: var(--vermiljoen); }
+
+  .nav-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .nav-btn {
+    padding: 9px 22px;
+    border-radius: 6px;
+    border: 1.5px solid var(--kobalt);
+    background: var(--wit);
+    color: var(--kobalt);
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background 0.12s;
+  }
+  .nav-btn:hover { background: var(--kobalt-licht); }
+
+  .progress-wrap {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .progress-dots {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    max-width: 300px;
+  }
+
+  .dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--border);
+    transition: background 0.2s;
+  }
+  .dot.current { background: var(--kobalt); }
+  .dot.ok { background: #388e3c; }
+  .dot.mis { background: var(--vermiljoen); }
+
+  .progress-label {
+    font-size: 13px;
+    color: var(--tekst-zacht);
+    white-space: nowrap;
+  }
+
+  @media (max-width: 540px) {
+    .options { grid-template-columns: 1fr; }
+    .q-naam { font-size: 1.5rem; }
+    header { padding: 1rem; }
+    .container { padding: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Organische Chemie</h1>
+  <span>Naamgeving oefenen</span>
+</header>
+
+<div class="container">
+  <div class="top-bar">
+    <button class="mode-btn active" id="btn-n2f" onclick="setMode('naam2formule')">Naam → Formule</button>
+    <button class="mode-btn" id="btn-f2n" onclick="setMode('formule2naam')">Formule → Naam</button>
+    <button class="reset-btn" onclick="resetAll()">↺ Opnieuw</button>
+    <div class="score-area">
+      Score: <span class="score-num" id="score-display">0/0</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="q-label" id="q-label">Welke structuurformule hoort bij deze naam?</div>
+    <div id="question-area"></div>
+    <div class="options" id="options-area"></div>
+    <div class="feedback" id="feedback"></div>
+  </div>
+
+  <div class="nav-bar">
+    <button class="nav-btn" onclick="prevQ()">← Vorige</button>
+    <button class="nav-btn" onclick="nextQ()">Volgende →</button>
+    <div class="progress-wrap">
+      <div class="progress-dots" id="dots"></div>
+      <div class="progress-label" id="progress-label">1 / 25</div>
+    </div>
+  </div>
+</div>
+
+<script>
+const TC = '#1a1a1a';
+const FS = 11.5;
+
+function hw(label) {
+  const w = {'CH₃':14,'CH₂':13,'CH':10,'C':5,'C₂H₅':17};
+  return w[label] || label.length * 5;
+}
+
+function makeSVG(w, h, atoms, bonds) {
+  const amap = {};
+  atoms.forEach(a => amap[a.id] = a);
+  let lines = '';
+  bonds.forEach(b => {
+    const a1 = amap[b.a], a2 = amap[b.b];
+    const dx = a2.x-a1.x, dy = a2.y-a1.y;
+    const len = Math.sqrt(dx*dx+dy*dy)||1;
+    const ux = dx/len, uy = dy/len;
+    const g1 = hw(a1.label)+2, g2 = hw(a2.label)+2;
+    const x1=a1.x+ux*g1, y1=a1.y+uy*g1, x2=a2.x-ux*g2, y2=a2.y-uy*g2;
+    if(!b.double) {
+      lines += `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="${TC}" stroke-width="1.4"/>`;
+    } else {
+      const px=-uy*2.5, py=ux*2.5;
+      lines += `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="${TC}" stroke-width="1.4"/>`;
+      lines += `<line x1="${(x1+px).toFixed(1)}" y1="${(y1+py).toFixed(1)}" x2="${(x2+px).toFixed(1)}" y2="${(y2+py).toFixed(1)}" stroke="${TC}" stroke-width="1.4"/>`;
+    }
+  });
+  let texts = '';
+  atoms.forEach(a => {
+    texts += `<text x="${a.x}" y="${a.y}" text-anchor="middle" dominant-baseline="central" font-size="${FS}" fill="${TC}" font-family="'DM Sans',sans-serif">${a.label}</text>`;
+  });
+  return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" xmlns="http://www.w3.org/2000/svg" style="display:block;">${lines}${texts}</svg>`;
+}
+
+function A(id,x,y,label){return {id,x,y,label};}
+function B(a,b,dbl){return {a,b,double:!!dbl};}
+
+const YS=32;
+
+const molecules = [
+  { naam:"but-1-een", draw:()=>{ const cy=35; return makeSVG(210,70,[A(0,18,cy,'CH₂'),A(1,62,cy,'CH'),A(2,106,cy,'CH₂'),A(3,150,cy,'CH₃')],[B(0,1,true),B(1,2),B(2,3)]); }},
+  { naam:"but-2-een", draw:()=>{ const cy=35; return makeSVG(210,70,[A(0,18,cy,'CH₃'),A(1,62,cy,'CH'),A(2,106,cy,'CH'),A(3,150,cy,'CH₃')],[B(0,1),B(1,2,true),B(2,3)]); }},
+  { naam:"pent-1-een", draw:()=>{ const cy=35; return makeSVG(255,70,[A(0,18,cy,'CH₂'),A(1,62,cy,'CH'),A(2,106,cy,'CH₂'),A(3,150,cy,'CH₂'),A(4,196,cy,'CH₃')],[B(0,1,true),B(1,2),B(2,3),B(3,4)]); }},
+  { naam:"pent-2-een", draw:()=>{ const cy=35; return makeSVG(255,70,[A(0,18,cy,'CH₃'),A(1,62,cy,'CH'),A(2,106,cy,'CH'),A(3,150,cy,'CH₂'),A(4,196,cy,'CH₃')],[B(0,1),B(1,2,true),B(2,3),B(3,4)]); }},
+  { naam:"hex-1-een", draw:()=>{ const cy=35; return makeSVG(295,70,[A(0,18,cy,'CH₂'),A(1,62,cy,'CH'),A(2,106,cy,'CH₂'),A(3,150,cy,'CH₂'),A(4,194,cy,'CH₂'),A(5,238,cy,'CH₃')],[B(0,1,true),B(1,2),B(2,3),B(3,4),B(4,5)]); }},
+  { naam:"hex-3-een", draw:()=>{ const cy=35; return makeSVG(295,70,[A(0,18,cy,'CH₃'),A(1,62,cy,'CH₂'),A(2,106,cy,'CH'),A(3,150,cy,'CH'),A(4,194,cy,'CH₂'),A(5,238,cy,'CH₃')],[B(0,1),B(1,2),B(2,3,true),B(3,4),B(4,5)]); }},
+  { naam:"2-methylpropaan", draw:()=>{ const cx=105,cy=50; return makeSVG(210,100,[A(0,22,cy,'CH₃'),A(1,cx,cy,'CH'),A(2,188,cy,'CH₃'),A(3,cx,cy-YS,'CH₃')],[B(0,1),B(1,2),B(1,3)]); }},
+  { naam:"2-methylbutaan", draw:()=>{ const cy=55; return makeSVG(255,100,[A(0,18,cy,'CH₃'),A(1,62,cy,'CH'),A(2,106,cy,'CH₂'),A(3,150,cy,'CH₂'),A(4,196,cy,'CH₃'),A(5,62,cy-YS,'CH₃')],[B(0,1),B(1,2),B(2,3),B(3,4),B(1,5)]); }},
+  { naam:"3-methylpentaan", draw:()=>{ const cy=55; return makeSVG(295,110,[A(0,18,cy,'CH₃'),A(1,62,cy,'CH₂'),A(2,106,cy,'CH'),A(3,150,cy,'CH₂'),A(4,196,cy,'CH₂'),A(5,238,cy,'CH₃'),A(6,106,cy+YS,'CH₃')],[B(0,1),B(1,2),B(2,3),B(3,4),B(4,5),B(2,6)]); }},
+  { naam:"2-methylpentaan", draw:()=>{ const cy=55; return makeSVG(295,100,[A(0,18,cy,'CH₃'),A(1,62,cy,'CH'),A(2,106,cy,'CH₂'),A(3,150,cy,'CH₂'),A(4,196,cy,'CH₂'),A(5,238,cy,'CH₃'),A(6,62,cy-YS,'CH₃')],[B(0,1),B(1,2),B(2,3),B(3,4),B(4,5),B(1,6)]); }},
+  { naam:"2,2-dimethylpropaan", draw:()=>{ const cx=105,cy=55; return makeSVG(210,120,[A(0,22,cy,'CH₃'),A(1,cx,cy,'C'),A(2,188,cy,'CH₃'),A(3,cx,cy-YS,'CH₃'),A(4,cx,cy+YS,'CH₃')],[B(0,1),B(1,2),B(1,3),B(1,4)]); }},
+  { naam:"2,3-dimethylbutaan", draw:()=>{ const cy=55; return makeSVG(255,115,[A(0,18,cy,'CH₃'),A(1,62,cy,'CH'),A(2,128,cy,'CH'),A(3,188,cy,'CH₃'),A(4,62,cy-YS,'CH₃'),A(5,128,cy+YS,'CH₃')],[B(0,1),B(1,2),B(2,3),B(1,4),B(2,5)]); }},
+  { naam:"2,2-dimethylbutaan", draw:()=>{ const cy=55; return makeSVG(295,120,[A(0,18,cy,'CH₃'),A(1,65,cy,'C'),A(2,115,cy,'CH₂'),A(3,165,cy,'CH₂'),A(4,215,cy,'CH₃'),A(5,65,cy-YS,'CH₃'),A(6,65,cy+YS,'CH₃')],[B(0,1),B(1,2),B(2,3),B(3,4),B(1,5),B(1,6)]); }},
+  { naam:"2,3-dimethylpentaan", draw:()=>{ const cy=55; return makeSVG(320,115,[A(0,18,cy,'CH₃'),A(1,62,cy,'CH'),A(2,110,cy,'CH'),A(3,158,cy,'CH₂'),A(4,206,cy,'CH₂'),A(5,252,cy,'CH₃'),A(6,62,cy-YS,'CH₃'),A(7,110,cy+YS,'CH₃')],[B(0,1),B(1,2),B(2,3),B(3,4),B(4,5),B(1,6),B(2,7)]); }},
+  { naam:"2-ethylbutaan", draw:()=>{ const cy=60; return makeSVG(280,130,[A(0,18,cy,'CH₃'),A(1,62,cy,'CH₂'),A(2,110,cy,'CH'),A(3,158,cy,'CH₂'),A(4,204,cy,'CH₃'),A(5,110,cy-YS,'CH₂'),A(6,110,cy-2*YS,'CH₃')],[B(0,1),B(1,2),B(2,3),B(3,4),B(2,5),B(5,6)]); }},
+  { naam:"3-ethylpentaan", draw:()=>{ const cy=55; return makeSVG(320,125,[A(0,18,cy,'CH₃'),A(1,62,cy,'CH₂'),A(2,110,cy,'CH'),A(3,158,cy,'CH₂'),A(4,206,cy,'CH₂'),A(5,252,cy,'CH₃'),A(6,110,cy+YS,'CH₂'),A(7,110,cy+2*YS,'CH₃')],[B(0,1),B(1,2),B(2,3),B(3,4),B(4,5),B(2,6),B(6,7)]); }},
+  { naam:"2-methylbut-2-een", draw:()=>{ const cy=55; return makeSVG(270,100,[A(0,18,cy,'CH₃'),A(1,65,cy,'C'),A(2,118,cy,'CH'),A(3,168,cy,'CH₂'),A(4,215,cy,'CH₃'),A(5,65,cy-YS,'CH₃')],[B(0,1),B(1,2,true),B(2,3),B(3,4),B(1,5)]); }},
+  { naam:"3-methylbut-1-een", draw:()=>{ const cy=55; return makeSVG(270,100,[A(0,18,cy,'CH₂'),A(1,62,cy,'CH'),A(2,110,cy,'CH'),A(3,160,cy,'CH₂'),A(4,207,cy,'CH₃'),A(5,110,cy-YS,'CH₃')],[B(0,1,true),B(1,2),B(2,3),B(3,4),B(2,5)]); }},
+  { naam:"2-methylpent-1-een", draw:()=>{ const cy=55; return makeSVG(315,100,[A(0,18,cy,'CH₂'),A(1,65,cy,'C'),A(2,115,cy,'CH₂'),A(3,163,cy,'CH₂'),A(4,211,cy,'CH₂'),A(5,258,cy,'CH₃'),A(6,65,cy-YS,'CH₃')],[B(0,1,true),B(1,2),B(2,3),B(3,4),B(4,5),B(1,6)]); }},
+  { naam:"4-methylpent-2-een", draw:()=>{ const cy=55; return makeSVG(315,110,[A(0,18,cy,'CH₃'),A(1,62,cy,'CH'),A(2,110,cy,'CH'),A(3,158,cy,'CH'),A(4,206,cy,'CH₂'),A(5,252,cy,'CH₃'),A(6,158,cy+YS,'CH₃')],[B(0,1),B(1,2,true),B(2,3),B(3,4),B(4,5),B(3,6)]); }},
+  { naam:"2,3-dimethylbut-2-een", draw:()=>{ const cy=60; return makeSVG(270,125,[A(0,18,cy,'CH₃'),A(1,65,cy,'C'),A(2,118,cy,'C'),A(3,165,cy,'CH₂'),A(4,212,cy,'CH₃'),A(5,65,cy-YS,'CH₃'),A(6,118,cy+YS,'CH₃')],[B(0,1),B(1,2,true),B(2,3),B(3,4),B(1,5),B(2,6)]); }},
+  { naam:"buta-1,3-dieen", draw:()=>{ const cy=35; return makeSVG(210,70,[A(0,18,cy,'CH₂'),A(1,62,cy,'CH'),A(2,106,cy,'CH'),A(3,150,cy,'CH₂')],[B(0,1,true),B(1,2),B(2,3,true)]); }},
+  { naam:"penta-1,3-dieen", draw:()=>{ const cy=35; return makeSVG(255,70,[A(0,18,cy,'CH₂'),A(1,62,cy,'CH'),A(2,106,cy,'CH'),A(3,150,cy,'CH'),A(4,196,cy,'CH₃')],[B(0,1,true),B(1,2),B(2,3,true),B(3,4)]); }},
+  { naam:"2-methylbuta-1,3-dieen", draw:()=>{ const cy=55; return makeSVG(250,100,[A(0,18,cy,'CH₂'),A(1,65,cy,'C'),A(2,115,cy,'CH'),A(3,163,cy,'CH₂'),A(4,65,cy-YS,'CH₃')],[B(0,1,true),B(1,2),B(2,3,true),B(1,4)]); }},
+  { naam:"2,3,3-trimethylbutaan", draw:()=>{ const cy=60; return makeSVG(280,130,[A(0,18,cy,'CH₃'),A(1,70,cy,'CH'),A(2,140,cy,'C'),A(3,210,cy,'CH₃'),A(4,70,cy-YS,'CH₃'),A(5,140,cy-YS,'CH₃'),A(6,140,cy+YS,'CH₃')],[B(0,1),B(1,2),B(2,3),B(1,4),B(2,5),B(2,6)]); }},
+];
+
+let mode = 'naam2formule';
+let qi = 0;
+let answered = new Array(25).fill(null);
+let correct = 0;
+let total = 0;
+let currentOpts = [];
+
+function shuffle(arr) {
+  const a=[...arr];
+  for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}
+  return a;
+}
+
+function setMode(m) {
+  mode = m;
+  document.getElementById('btn-n2f').className='mode-btn'+(m==='naam2formule'?' active':'');
+  document.getElementById('btn-f2n').className='mode-btn'+(m==='formule2naam'?' active':'');
+  document.getElementById('q-label').textContent = m==='naam2formule'
+    ? 'Welke structuurformule hoort bij deze naam?'
+    : 'Welke naam hoort bij deze structuurformule?';
+  resetAll();
+}
+
+function resetAll() {
+  correct=0; total=0;
+  answered = new Array(25).fill(null);
+  document.getElementById('score-display').textContent='0/0';
+  qi=0;
+  renderQ();
+}
+
+function renderQ() {
+  const mol = molecules[qi];
+  document.getElementById('progress-label').textContent = `${qi+1} / 25`;
+  document.getElementById('feedback').textContent = '';
+  document.getElementById('feedback').className = 'feedback';
+
+  updateDots();
+
+  const distIdx = shuffle(molecules.map((_,i)=>i).filter(i=>i!==qi)).slice(0,3);
+  currentOpts = shuffle([qi,...distIdx]);
+
+  const qArea = document.getElementById('question-area');
+  const oArea = document.getElementById('options-area');
+
+  if(mode==='naam2formule') {
+    qArea.innerHTML = `<div class="q-naam">${mol.naam}</div>`;
+    oArea.innerHTML='';
+    currentOpts.forEach(midx => {
+      const btn=document.createElement('button');
+      btn.className='opt-btn';
+      btn.innerHTML=molecules[midx].draw();
+      applyAnsweredState(btn, midx, answered[qi]);
+      btn.onclick=()=>handleAnswer(midx===qi, btn, midx);
+      oArea.appendChild(btn);
+    });
+  } else {
+    qArea.innerHTML=`<div class="svg-wrap">${mol.draw()}</div>`;
+    oArea.innerHTML='';
+    currentOpts.forEach(midx => {
+      const btn=document.createElement('button');
+      btn.className='opt-btn';
+      btn.textContent=molecules[midx].naam;
+      applyAnsweredState(btn, midx, answered[qi]);
+      btn.onclick=()=>handleAnswer(midx===qi, btn, midx);
+      oArea.appendChild(btn);
+    });
+  }
+
+  if(answered[qi]) {
+    document.getElementById('options-area').querySelectorAll('.opt-btn').forEach(b=>b.disabled=true);
+    const fb=document.getElementById('feedback');
+    if(answered[qi]==='correct'){fb.textContent='✓ Goed!';fb.className='feedback goed';}
+    else{fb.textContent='✗ Niet correct. Het juiste antwoord is blauw gemarkeerd.';fb.className='feedback fout';}
+  }
+}
+
+function applyAnsweredState(btn, midx, state) {
+  if(!state) return;
+  btn.disabled=true;
+  if(midx===qi) { btn.classList.add('reveal'); }
+}
+
+function handleAnswer(isCorrect, btn, midx) {
+  if(answered[qi]) return;
+  total++;
+  const btns=Array.from(document.getElementById('options-area').querySelectorAll('.opt-btn'));
+  btns.forEach(b=>b.disabled=true);
+  const fb=document.getElementById('feedback');
+  if(isCorrect) {
+    btn.classList.add('correct');
+    correct++;
+    answered[qi]='correct';
+    fb.textContent='✓ Goed!';
+    fb.className='feedback goed';
+  } else {
+    btn.classList.add('wrong');
+    answered[qi]='wrong';
+    btns.forEach((b,i)=>{ if(currentOpts[i]===qi) b.classList.add('reveal'); });
+    fb.textContent='✗ Niet correct. Het juiste antwoord is blauw gemarkeerd.';
+    fb.className='feedback fout';
+  }
+  document.getElementById('score-display').textContent=`${correct}/${total}`;
+  updateDots();
+}
+
+function updateDots() {
+  const cont=document.getElementById('dots');
+  cont.innerHTML='';
+  for(let i=0;i<25;i++){
+    const d=document.createElement('div');
+    d.className='dot';
+    if(i===qi) d.classList.add('current');
+    else if(answered[i]==='correct') d.classList.add('ok');
+    else if(answered[i]==='wrong') d.classList.add('mis');
+    cont.appendChild(d);
+  }
+}
+
+function nextQ(){if(qi<24){qi++;renderQ();}}
+function prevQ(){if(qi>0){qi--;renderQ();}}
+
+renderQ();
+</script>
+</body>
+</html>
