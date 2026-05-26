@@ -9,10 +9,8 @@
   :root {
     --vermiljoen: #E83A1E;
     --vermiljoen-licht: #fdecea;
-    --vermiljoen-donker: #b52c14;
     --kobalt: #1A3F8F;
     --kobalt-licht: #e8edf8;
-    --kobalt-mid: #2e5bbf;
     --wit: #ffffff;
     --grijs: #f4f4f2;
     --tekst: #1a1a1a;
@@ -21,283 +19,147 @@
     --correct-bg: #e8f5e9;
     --correct-border: #388e3c;
     --correct-tekst: #1b5e20;
-    --fout-bg: #fdecea;
-    --fout-border: #E83A1E;
-    --fout-tekst: #b52c14;
-    --reveal-bg: #e8edf8;
-    --reveal-border: #1A3F8F;
-    --reveal-tekst: #1A3F8F;
   }
-
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--grijs);
-    color: var(--tekst);
-    min-height: 100vh;
-  }
+  body { font-family: 'DM Sans', sans-serif; background: var(--grijs); color: var(--tekst); min-height: 100vh; }
 
   header {
-    background: var(--kobalt);
-    color: var(--wit);
-    padding: 1.25rem 2rem;
-    display: flex;
-    align-items: baseline;
-    gap: 1rem;
+    background: var(--kobalt); color: var(--wit);
+    padding: 1.1rem 1.5rem;
+    display: flex; align-items: baseline; gap: 1rem;
     border-bottom: 4px solid var(--vermiljoen);
   }
+  header h1 { font-family: 'DM Serif Display', serif; font-size: 1.4rem; font-weight: 400; }
+  header span { font-size: 0.82rem; opacity: 0.7; }
 
-  header h1 {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.5rem;
-    font-weight: 400;
-    letter-spacing: 0.01em;
-  }
+  .container { max-width: 800px; margin: 0 auto; padding: 1.5rem 1rem; }
 
-  header span {
-    font-size: 0.85rem;
-    opacity: 0.7;
-  }
-
-  .container {
-    max-width: 780px;
-    margin: 0 auto;
-    padding: 2rem 1.5rem;
-  }
-
-  .top-bar {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 1.5rem;
-    flex-wrap: wrap;
-  }
-
+  .top-bar { display: flex; align-items: center; gap: 8px; margin-bottom: 1.25rem; flex-wrap: wrap; }
   .mode-btn {
-    padding: 9px 20px;
-    border-radius: 6px;
+    padding: 8px 18px; border-radius: 6px;
     border: 2px solid var(--kobalt);
-    background: var(--wit);
-    color: var(--kobalt);
-    cursor: pointer;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 14px;
-    font-weight: 500;
+    background: var(--wit); color: var(--kobalt);
+    cursor: pointer; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500;
     transition: all 0.15s;
   }
-
   .mode-btn:hover { background: var(--kobalt-licht); }
-
-  .mode-btn.active {
-    background: var(--kobalt);
-    color: var(--wit);
-  }
-
-  .score-area {
-    margin-left: auto;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 14px;
-    color: var(--tekst-zacht);
-  }
-
-  .score-num {
-    font-size: 18px;
-    font-weight: 500;
-    color: var(--kobalt);
-  }
-
+  .mode-btn.active { background: var(--kobalt); color: var(--wit); }
   .reset-btn {
-    padding: 7px 14px;
-    border-radius: 6px;
-    border: 1.5px solid var(--border);
-    background: var(--wit);
-    color: var(--tekst-zacht);
-    cursor: pointer;
-    font-size: 13px;
-    font-family: 'DM Sans', sans-serif;
+    padding: 7px 14px; border-radius: 6px;
+    border: 1.5px solid var(--border); background: var(--wit); color: var(--tekst-zacht);
+    cursor: pointer; font-size: 13px; font-family: 'DM Sans', sans-serif;
   }
   .reset-btn:hover { border-color: var(--vermiljoen); color: var(--vermiljoen); }
+  .score-area { margin-left: auto; display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--tekst-zacht); }
+  .score-num { font-size: 18px; font-weight: 500; color: var(--kobalt); }
 
   .card {
-    background: var(--wit);
-    border-radius: 12px;
-    border: 1.5px solid var(--border);
-    padding: 1.75rem;
-    margin-bottom: 1.25rem;
+    background: var(--wit); border-radius: 12px; border: 1.5px solid var(--border);
+    padding: 1.5rem; margin-bottom: 1rem;
     box-shadow: 0 2px 8px rgba(26,63,143,0.06);
   }
+  .q-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--kobalt); font-weight: 500; margin-bottom: 0.75rem; }
+  .q-naam { font-family: 'DM Serif Display', serif; font-size: 1.8rem; color: var(--tekst); }
 
-  .q-label {
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--kobalt);
-    font-weight: 500;
-    margin-bottom: 0.75rem;
-  }
+  .svg-wrap { display: flex; justify-content: center; padding: 0.25rem 0; }
+  .svg-wrap svg, .opt-btn svg { max-width: 100%; height: auto; }
 
-  .q-naam {
-    font-family: 'DM Serif Display', serif;
-    font-size: 2rem;
-    color: var(--tekst);
-    letter-spacing: 0.01em;
-    margin-bottom: 0.25rem;
-  }
-
-  .svg-wrap {
-    display: flex;
-    justify-content: center;
-    padding: 0.5rem 0;
-  }
-
-  .options {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-top: 1.25rem;
-  }
-
+  .options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 1.1rem; }
   .opt-btn {
-    padding: 14px 10px;
-    border-radius: 8px;
-    border: 1.5px solid var(--border);
-    background: var(--wit);
-    cursor: pointer;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 14px;
-    color: var(--tekst);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding: 12px 8px; border-radius: 8px; border: 1.5px solid var(--border);
+    background: var(--wit); cursor: pointer;
+    font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--tekst);
+    display: flex; align-items: center; justify-content: center;
     transition: border-color 0.12s, background 0.12s;
-    text-align: center;
-    line-height: 1.4;
-    min-height: 56px;
+    text-align: center; line-height: 1.4; min-height: 52px;
+    overflow: hidden;
   }
-
-  .opt-btn:hover:not(:disabled) {
-    border-color: var(--kobalt);
-    background: var(--kobalt-licht);
-  }
-
+  .opt-btn:hover:not(:disabled) { border-color: var(--kobalt); background: var(--kobalt-licht); }
   .opt-btn:disabled { cursor: default; }
+  .opt-btn.correct { background: var(--correct-bg); border-color: var(--correct-border); color: var(--correct-tekst); font-weight: 500; }
+  .opt-btn.wrong { background: var(--vermiljoen-licht); border-color: var(--vermiljoen); color: #b52c14; }
+  .opt-btn.reveal { background: var(--kobalt-licht); border-color: var(--kobalt); color: var(--kobalt); font-weight: 500; }
 
-  .opt-btn.correct {
-    background: var(--correct-bg);
-    border-color: var(--correct-border);
-    color: var(--correct-tekst);
-    font-weight: 500;
+  /* Feedback area */
+  .feedback-ok {
+    margin-top: 0.9rem; padding: 0.75rem 1rem;
+    background: var(--correct-bg); border-left: 4px solid var(--correct-border);
+    border-radius: 6px; font-size: 14px; color: var(--correct-tekst); font-weight: 500;
+    display: none;
   }
-
-  .opt-btn.wrong {
-    background: var(--fout-bg);
-    border-color: var(--fout-border);
-    color: var(--fout-tekst);
+  .uitleg-blok {
+    margin-top: 0.9rem; border-radius: 8px; overflow: hidden;
+    border: 1.5px solid var(--vermiljoen); display: none;
   }
-
-  .opt-btn.reveal {
-    background: var(--reveal-bg);
-    border-color: var(--reveal-border);
-    color: var(--reveal-tekst);
-    font-weight: 500;
+  .uitleg-fout {
+    background: var(--vermiljoen-licht); padding: 0.75rem 1rem;
+    border-bottom: 1px solid #f5c0b8;
   }
-
-  .feedback {
-    margin-top: 1rem;
-    font-size: 14px;
-    font-weight: 500;
-    min-height: 22px;
-    color: var(--tekst-zacht);
+  .uitleg-goed {
+    background: var(--kobalt-licht); padding: 0.75rem 1rem;
   }
-
-  .feedback.goed { color: var(--correct-border); }
-  .feedback.fout { color: var(--vermiljoen); }
-
-  .nav-bar {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  .uitleg-label {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 0.07em;
+    font-weight: 500; margin-bottom: 0.3rem;
   }
+  .uitleg-fout .uitleg-label { color: var(--vermiljoen); }
+  .uitleg-goed .uitleg-label { color: var(--kobalt); }
+  .uitleg-tekst { font-size: 13.5px; line-height: 1.55; color: var(--tekst); }
 
+  /* Nav */
+  .nav-bar { display: flex; align-items: center; gap: 8px; }
   .nav-btn {
-    padding: 9px 22px;
-    border-radius: 6px;
-    border: 1.5px solid var(--kobalt);
-    background: var(--wit);
-    color: var(--kobalt);
-    cursor: pointer;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    transition: background 0.12s;
+    padding: 9px 20px; border-radius: 6px; border: 1.5px solid var(--kobalt);
+    background: var(--wit); color: var(--kobalt); cursor: pointer;
+    font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500;
   }
   .nav-btn:hover { background: var(--kobalt-licht); }
-
-  .progress-wrap {
-    margin-left: auto;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .progress-dots {
-    display: flex;
-    gap: 4px;
-    flex-wrap: wrap;
-    max-width: 300px;
-  }
-
-  .dot {
-    width: 10px; height: 10px;
-    border-radius: 50%;
-    background: var(--border);
-    transition: background 0.2s;
-  }
+  .progress-wrap { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+  .progress-dots { display: flex; gap: 4px; flex-wrap: wrap; max-width: 260px; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--border); transition: background 0.2s; }
   .dot.current { background: var(--kobalt); }
   .dot.ok { background: #388e3c; }
   .dot.mis { background: var(--vermiljoen); }
+  .progress-label { font-size: 13px; color: var(--tekst-zacht); white-space: nowrap; }
 
-  .progress-label {
-    font-size: 13px;
-    color: var(--tekst-zacht);
-    white-space: nowrap;
-  }
-
-  @media (max-width: 540px) {
+  @media (max-width: 500px) {
     .options { grid-template-columns: 1fr; }
-    .q-naam { font-size: 1.5rem; }
-    header { padding: 1rem; }
-    .container { padding: 1rem; }
+    .q-naam { font-size: 1.4rem; }
+    header { padding: 0.9rem 1rem; }
+    .container { padding: 1rem 0.75rem; }
+    .card { padding: 1.1rem; }
+    .progress-dots { max-width: 160px; }
   }
 </style>
 </head>
 <body>
-
 <header>
   <h1>Organische Chemie</h1>
-  <span>Naamgeving oefenen</span>
+  <span>Naamgeving oefenen — 3 havo</span>
 </header>
-
 <div class="container">
   <div class="top-bar">
     <button class="mode-btn active" id="btn-n2f" onclick="setMode('naam2formule')">Naam → Formule</button>
     <button class="mode-btn" id="btn-f2n" onclick="setMode('formule2naam')">Formule → Naam</button>
     <button class="reset-btn" onclick="resetAll()">↺ Opnieuw</button>
-    <div class="score-area">
-      Score: <span class="score-num" id="score-display">0/0</span>
-    </div>
+    <div class="score-area">Score: <span class="score-num" id="score-display">0/0</span></div>
   </div>
-
   <div class="card">
     <div class="q-label" id="q-label">Welke structuurformule hoort bij deze naam?</div>
     <div id="question-area"></div>
     <div class="options" id="options-area"></div>
-    <div class="feedback" id="feedback"></div>
+    <div class="feedback-ok" id="feedback-ok">✓ Goed!</div>
+    <div class="uitleg-blok" id="uitleg-blok">
+      <div class="uitleg-fout">
+        <div class="uitleg-label">Jij koos</div>
+        <div class="uitleg-tekst" id="uitleg-fout-tekst"></div>
+      </div>
+      <div class="uitleg-goed">
+        <div class="uitleg-label">Het juiste antwoord</div>
+        <div class="uitleg-tekst" id="uitleg-goed-tekst"></div>
+      </div>
+    </div>
   </div>
-
   <div class="nav-bar">
     <button class="nav-btn" onclick="prevQ()">← Vorige</button>
     <button class="nav-btn" onclick="nextQ()">Volgende →</button>
@@ -307,7 +169,6 @@
     </div>
   </div>
 </div>
-
 <script>
 const TC = '#1a1a1a';
 const FS = 11.5;
@@ -322,63 +183,138 @@ function makeSVG(w, h, atoms, bonds) {
   atoms.forEach(a => amap[a.id] = a);
   let lines = '';
   bonds.forEach(b => {
-    const a1 = amap[b.a], a2 = amap[b.b];
-    const dx = a2.x-a1.x, dy = a2.y-a1.y;
-    const len = Math.sqrt(dx*dx+dy*dy)||1;
-    const ux = dx/len, uy = dy/len;
-    const g1 = hw(a1.label)+2, g2 = hw(a2.label)+2;
+    const a1=amap[b.a], a2=amap[b.b];
+    const dx=a2.x-a1.x, dy=a2.y-a1.y;
+    const len=Math.sqrt(dx*dx+dy*dy)||1;
+    const ux=dx/len, uy=dy/len;
+    const g1=hw(a1.label)+2, g2=hw(a2.label)+2;
     const x1=a1.x+ux*g1, y1=a1.y+uy*g1, x2=a2.x-ux*g2, y2=a2.y-uy*g2;
     if(!b.double) {
-      lines += `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="${TC}" stroke-width="1.4"/>`;
+      lines+=`<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="${TC}" stroke-width="1.4"/>`;
     } else {
       const px=-uy*2.5, py=ux*2.5;
-      lines += `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="${TC}" stroke-width="1.4"/>`;
-      lines += `<line x1="${(x1+px).toFixed(1)}" y1="${(y1+py).toFixed(1)}" x2="${(x2+px).toFixed(1)}" y2="${(y2+py).toFixed(1)}" stroke="${TC}" stroke-width="1.4"/>`;
+      lines+=`<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="${TC}" stroke-width="1.4"/>`;
+      lines+=`<line x1="${(x1+px).toFixed(1)}" y1="${(y1+py).toFixed(1)}" x2="${(x2+px).toFixed(1)}" y2="${(y2+py).toFixed(1)}" stroke="${TC}" stroke-width="1.4"/>`;
     }
   });
-  let texts = '';
-  atoms.forEach(a => {
-    texts += `<text x="${a.x}" y="${a.y}" text-anchor="middle" dominant-baseline="central" font-size="${FS}" fill="${TC}" font-family="'DM Sans',sans-serif">${a.label}</text>`;
+  let texts='';
+  atoms.forEach(a=>{
+    texts+=`<text x="${a.x}" y="${a.y}" text-anchor="middle" dominant-baseline="central" font-size="${FS}" fill="${TC}" font-family="'DM Sans',sans-serif">${a.label}</text>`;
   });
-  return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" xmlns="http://www.w3.org/2000/svg" style="display:block;">${lines}${texts}</svg>`;
+  return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" xmlns="http://www.w3.org/2000/svg" style="display:block;max-width:100%;height:auto;">${lines}${texts}</svg>`;
 }
 
 function A(id,x,y,label){return {id,x,y,label};}
 function B(a,b,dbl){return {a,b,double:!!dbl};}
-
 const YS=32;
 
+// ── MOLECULES ──────────────────────────────────────────────────────────────
 const molecules = [
-  { naam:"but-1-een", draw:()=>{ const cy=35; return makeSVG(210,70,[A(0,18,cy,'CH₂'),A(1,62,cy,'CH'),A(2,106,cy,'CH₂'),A(3,150,cy,'CH₃')],[B(0,1,true),B(1,2),B(2,3)]); }},
-  { naam:"but-2-een", draw:()=>{ const cy=35; return makeSVG(210,70,[A(0,18,cy,'CH₃'),A(1,62,cy,'CH'),A(2,106,cy,'CH'),A(3,150,cy,'CH₃')],[B(0,1),B(1,2,true),B(2,3)]); }},
-  { naam:"pent-1-een", draw:()=>{ const cy=35; return makeSVG(255,70,[A(0,18,cy,'CH₂'),A(1,62,cy,'CH'),A(2,106,cy,'CH₂'),A(3,150,cy,'CH₂'),A(4,196,cy,'CH₃')],[B(0,1,true),B(1,2),B(2,3),B(3,4)]); }},
-  { naam:"pent-2-een", draw:()=>{ const cy=35; return makeSVG(255,70,[A(0,18,cy,'CH₃'),A(1,62,cy,'CH'),A(2,106,cy,'CH'),A(3,150,cy,'CH₂'),A(4,196,cy,'CH₃')],[B(0,1),B(1,2,true),B(2,3),B(3,4)]); }},
-  { naam:"hex-1-een", draw:()=>{ const cy=35; return makeSVG(295,70,[A(0,18,cy,'CH₂'),A(1,62,cy,'CH'),A(2,106,cy,'CH₂'),A(3,150,cy,'CH₂'),A(4,194,cy,'CH₂'),A(5,238,cy,'CH₃')],[B(0,1,true),B(1,2),B(2,3),B(3,4),B(4,5)]); }},
-  { naam:"hex-3-een", draw:()=>{ const cy=35; return makeSVG(295,70,[A(0,18,cy,'CH₃'),A(1,62,cy,'CH₂'),A(2,106,cy,'CH'),A(3,150,cy,'CH'),A(4,194,cy,'CH₂'),A(5,238,cy,'CH₃')],[B(0,1),B(1,2),B(2,3,true),B(3,4),B(4,5)]); }},
-  { naam:"2-methylpropaan", draw:()=>{ const cx=105,cy=50; return makeSVG(210,100,[A(0,22,cy,'CH₃'),A(1,cx,cy,'CH'),A(2,188,cy,'CH₃'),A(3,cx,cy-YS,'CH₃')],[B(0,1),B(1,2),B(1,3)]); }},
-  { naam:"2-methylbutaan", draw:()=>{ const cy=55; return makeSVG(255,100,[A(0,18,cy,'CH₃'),A(1,62,cy,'CH'),A(2,106,cy,'CH₂'),A(3,150,cy,'CH₂'),A(4,196,cy,'CH₃'),A(5,62,cy-YS,'CH₃')],[B(0,1),B(1,2),B(2,3),B(3,4),B(1,5)]); }},
-  { naam:"3-methylpentaan", draw:()=>{ const cy=55; return makeSVG(295,110,[A(0,18,cy,'CH₃'),A(1,62,cy,'CH₂'),A(2,106,cy,'CH'),A(3,150,cy,'CH₂'),A(4,196,cy,'CH₂'),A(5,238,cy,'CH₃'),A(6,106,cy+YS,'CH₃')],[B(0,1),B(1,2),B(2,3),B(3,4),B(4,5),B(2,6)]); }},
-  { naam:"2-methylpentaan", draw:()=>{ const cy=55; return makeSVG(295,100,[A(0,18,cy,'CH₃'),A(1,62,cy,'CH'),A(2,106,cy,'CH₂'),A(3,150,cy,'CH₂'),A(4,196,cy,'CH₂'),A(5,238,cy,'CH₃'),A(6,62,cy-YS,'CH₃')],[B(0,1),B(1,2),B(2,3),B(3,4),B(4,5),B(1,6)]); }},
-  { naam:"2,2-dimethylpropaan", draw:()=>{ const cx=105,cy=55; return makeSVG(210,120,[A(0,22,cy,'CH₃'),A(1,cx,cy,'C'),A(2,188,cy,'CH₃'),A(3,cx,cy-YS,'CH₃'),A(4,cx,cy+YS,'CH₃')],[B(0,1),B(1,2),B(1,3),B(1,4)]); }},
-  { naam:"2,3-dimethylbutaan", draw:()=>{ const cy=55; return makeSVG(255,115,[A(0,18,cy,'CH₃'),A(1,62,cy,'CH'),A(2,128,cy,'CH'),A(3,188,cy,'CH₃'),A(4,62,cy-YS,'CH₃'),A(5,128,cy+YS,'CH₃')],[B(0,1),B(1,2),B(2,3),B(1,4),B(2,5)]); }},
-  { naam:"2,2-dimethylbutaan", draw:()=>{ const cy=55; return makeSVG(295,120,[A(0,18,cy,'CH₃'),A(1,65,cy,'C'),A(2,115,cy,'CH₂'),A(3,165,cy,'CH₂'),A(4,215,cy,'CH₃'),A(5,65,cy-YS,'CH₃'),A(6,65,cy+YS,'CH₃')],[B(0,1),B(1,2),B(2,3),B(3,4),B(1,5),B(1,6)]); }},
-  { naam:"2,3-dimethylpentaan", draw:()=>{ const cy=55; return makeSVG(320,115,[A(0,18,cy,'CH₃'),A(1,62,cy,'CH'),A(2,110,cy,'CH'),A(3,158,cy,'CH₂'),A(4,206,cy,'CH₂'),A(5,252,cy,'CH₃'),A(6,62,cy-YS,'CH₃'),A(7,110,cy+YS,'CH₃')],[B(0,1),B(1,2),B(2,3),B(3,4),B(4,5),B(1,6),B(2,7)]); }},
-  { naam:"2-ethylbutaan", draw:()=>{ const cy=60; return makeSVG(280,130,[A(0,18,cy,'CH₃'),A(1,62,cy,'CH₂'),A(2,110,cy,'CH'),A(3,158,cy,'CH₂'),A(4,204,cy,'CH₃'),A(5,110,cy-YS,'CH₂'),A(6,110,cy-2*YS,'CH₃')],[B(0,1),B(1,2),B(2,3),B(3,4),B(2,5),B(5,6)]); }},
-  { naam:"3-ethylpentaan", draw:()=>{ const cy=55; return makeSVG(320,125,[A(0,18,cy,'CH₃'),A(1,62,cy,'CH₂'),A(2,110,cy,'CH'),A(3,158,cy,'CH₂'),A(4,206,cy,'CH₂'),A(5,252,cy,'CH₃'),A(6,110,cy+YS,'CH₂'),A(7,110,cy+2*YS,'CH₃')],[B(0,1),B(1,2),B(2,3),B(3,4),B(4,5),B(2,6),B(6,7)]); }},
-  { naam:"2-methylbut-2-een", draw:()=>{ const cy=55; return makeSVG(270,100,[A(0,18,cy,'CH₃'),A(1,65,cy,'C'),A(2,118,cy,'CH'),A(3,168,cy,'CH₂'),A(4,215,cy,'CH₃'),A(5,65,cy-YS,'CH₃')],[B(0,1),B(1,2,true),B(2,3),B(3,4),B(1,5)]); }},
-  { naam:"3-methylbut-1-een", draw:()=>{ const cy=55; return makeSVG(270,100,[A(0,18,cy,'CH₂'),A(1,62,cy,'CH'),A(2,110,cy,'CH'),A(3,160,cy,'CH₂'),A(4,207,cy,'CH₃'),A(5,110,cy-YS,'CH₃')],[B(0,1,true),B(1,2),B(2,3),B(3,4),B(2,5)]); }},
-  { naam:"2-methylpent-1-een", draw:()=>{ const cy=55; return makeSVG(315,100,[A(0,18,cy,'CH₂'),A(1,65,cy,'C'),A(2,115,cy,'CH₂'),A(3,163,cy,'CH₂'),A(4,211,cy,'CH₂'),A(5,258,cy,'CH₃'),A(6,65,cy-YS,'CH₃')],[B(0,1,true),B(1,2),B(2,3),B(3,4),B(4,5),B(1,6)]); }},
-  { naam:"4-methylpent-2-een", draw:()=>{ const cy=55; return makeSVG(315,110,[A(0,18,cy,'CH₃'),A(1,62,cy,'CH'),A(2,110,cy,'CH'),A(3,158,cy,'CH'),A(4,206,cy,'CH₂'),A(5,252,cy,'CH₃'),A(6,158,cy+YS,'CH₃')],[B(0,1),B(1,2,true),B(2,3),B(3,4),B(4,5),B(3,6)]); }},
-  { naam:"2,3-dimethylbut-2-een", draw:()=>{ const cy=60; return makeSVG(270,125,[A(0,18,cy,'CH₃'),A(1,65,cy,'C'),A(2,118,cy,'C'),A(3,165,cy,'CH₂'),A(4,212,cy,'CH₃'),A(5,65,cy-YS,'CH₃'),A(6,118,cy+YS,'CH₃')],[B(0,1),B(1,2,true),B(2,3),B(3,4),B(1,5),B(2,6)]); }},
-  { naam:"buta-1,3-dieen", draw:()=>{ const cy=35; return makeSVG(210,70,[A(0,18,cy,'CH₂'),A(1,62,cy,'CH'),A(2,106,cy,'CH'),A(3,150,cy,'CH₂')],[B(0,1,true),B(1,2),B(2,3,true)]); }},
-  { naam:"penta-1,3-dieen", draw:()=>{ const cy=35; return makeSVG(255,70,[A(0,18,cy,'CH₂'),A(1,62,cy,'CH'),A(2,106,cy,'CH'),A(3,150,cy,'CH'),A(4,196,cy,'CH₃')],[B(0,1,true),B(1,2),B(2,3,true),B(3,4)]); }},
-  { naam:"2-methylbuta-1,3-dieen", draw:()=>{ const cy=55; return makeSVG(250,100,[A(0,18,cy,'CH₂'),A(1,65,cy,'C'),A(2,115,cy,'CH'),A(3,163,cy,'CH₂'),A(4,65,cy-YS,'CH₃')],[B(0,1,true),B(1,2),B(2,3,true),B(1,4)]); }},
-  { naam:"2,3,3-trimethylbutaan", draw:()=>{ const cy=60; return makeSVG(280,130,[A(0,18,cy,'CH₃'),A(1,70,cy,'CH'),A(2,140,cy,'C'),A(3,210,cy,'CH₃'),A(4,70,cy-YS,'CH₃'),A(5,140,cy-YS,'CH₃'),A(6,140,cy+YS,'CH₃')],[B(0,1),B(1,2),B(2,3),B(1,4),B(2,5),B(2,6)]); }},
+  { naam:"but-1-een",
+    uitleg:"De hoofdketen heeft 4 koolstofatomen (but-), er is één dubbele binding (-een) die begint bij C1. Het eerste koolstofatoom heeft dus maar twee H-atomen: CH₂=CH-.",
+    draw:()=>{ const cy=35; return makeSVG(210,70,[A(0,18,cy,'CH₂'),A(1,62,cy,'CH'),A(2,106,cy,'CH₂'),A(3,150,cy,'CH₃')],[B(0,1,true),B(1,2),B(2,3)]); }},
+
+  { naam:"but-2-een",
+    uitleg:"De hoofdketen heeft 4 koolstofatomen (but-), de dubbele binding zit tussen C2 en C3. Beide middelste koolstofatomen hebben elk één H: -CH=CH-.",
+    draw:()=>{ const cy=35; return makeSVG(210,70,[A(0,18,cy,'CH₃'),A(1,62,cy,'CH'),A(2,106,cy,'CH'),A(3,150,cy,'CH₃')],[B(0,1),B(1,2,true),B(2,3)]); }},
+
+  { naam:"pent-1-een",
+    uitleg:"De hoofdketen heeft 5 koolstofatomen (pent-), de dubbele binding begint bij C1. De keten is CH₂=CH-CH₂-CH₂-CH₃.",
+    draw:()=>{ const cy=35; return makeSVG(255,70,[A(0,18,cy,'CH₂'),A(1,62,cy,'CH'),A(2,106,cy,'CH₂'),A(3,150,cy,'CH₂'),A(4,196,cy,'CH₃')],[B(0,1,true),B(1,2),B(2,3),B(3,4)]); }},
+
+  { naam:"pent-2-een",
+    uitleg:"De hoofdketen heeft 5 koolstofatomen (pent-), de dubbele binding zit tussen C2 en C3. De keten is CH₃-CH=CH-CH₂-CH₃.",
+    draw:()=>{ const cy=35; return makeSVG(255,70,[A(0,18,cy,'CH₃'),A(1,62,cy,'CH'),A(2,106,cy,'CH'),A(3,150,cy,'CH₂'),A(4,196,cy,'CH₃')],[B(0,1),B(1,2,true),B(2,3),B(3,4)]); }},
+
+  { naam:"hex-1-een",
+    uitleg:"De hoofdketen heeft 6 koolstofatomen (hex-), de dubbele binding begint bij C1. De keten is CH₂=CH-CH₂-CH₂-CH₂-CH₃.",
+    draw:()=>{ const cy=35; return makeSVG(295,70,[A(0,18,cy,'CH₂'),A(1,62,cy,'CH'),A(2,106,cy,'CH₂'),A(3,150,cy,'CH₂'),A(4,194,cy,'CH₂'),A(5,238,cy,'CH₃')],[B(0,1,true),B(1,2),B(2,3),B(3,4),B(4,5)]); }},
+
+  { naam:"hex-3-een",
+    uitleg:"De hoofdketen heeft 6 koolstofatomen (hex-), de dubbele binding zit tussen C3 en C4. De keten is CH₃-CH₂-CH=CH-CH₂-CH₃.",
+    draw:()=>{ const cy=35; return makeSVG(295,70,[A(0,18,cy,'CH₃'),A(1,62,cy,'CH₂'),A(2,106,cy,'CH'),A(3,150,cy,'CH'),A(4,194,cy,'CH₂'),A(5,238,cy,'CH₃')],[B(0,1),B(1,2),B(2,3,true),B(3,4),B(4,5)]); }},
+
+  { naam:"2-methylpropaan",
+    uitleg:"De langste keten heeft 3 C-atomen (propaan). Op C2 zit een methylgroep (-CH₃) omhoog of omlaag. C2 heeft maar één H-atoom: het middelpunt heeft verbindingen naar links, rechts én omhoog.",
+    draw:()=>{ const cx=105,cy=50; return makeSVG(210,100,[A(0,22,cy,'CH₃'),A(1,cx,cy,'CH'),A(2,188,cy,'CH₃'),A(3,cx,cy-YS,'CH₃')],[B(0,1),B(1,2),B(1,3)]); }},
+
+  { naam:"2-methylbutaan",
+    uitleg:"De langste keten heeft 4 C-atomen (butaan). Op C2 zit een methylgroep. C2 heeft één extra CH₃ omhoog en verbindingen links en rechts in de keten.",
+    draw:()=>{ const cy=55; return makeSVG(255,100,[A(0,18,cy,'CH₃'),A(1,62,cy,'CH'),A(2,106,cy,'CH₂'),A(3,150,cy,'CH₂'),A(4,196,cy,'CH₃'),A(5,62,cy-YS,'CH₃')],[B(0,1),B(1,2),B(2,3),B(3,4),B(1,5)]); }},
+
+  { naam:"3-methylpentaan",
+    uitleg:"De langste keten heeft 5 C-atomen (pentaan). De methylgroep zit op C3, het middelste koolstofatoom. Die hangt omlaag. C3 heeft geen H-atomen meer.",
+    draw:()=>{ const cy=55; return makeSVG(295,110,[A(0,18,cy,'CH₃'),A(1,62,cy,'CH₂'),A(2,106,cy,'CH'),A(3,150,cy,'CH₂'),A(4,196,cy,'CH₂'),A(5,238,cy,'CH₃'),A(6,106,cy+YS,'CH₃')],[B(0,1),B(1,2),B(2,3),B(3,4),B(4,5),B(2,6)]); }},
+
+  { naam:"2-methylpentaan",
+    uitleg:"De langste keten heeft 5 C-atomen (pentaan). De methylgroep zit op C2 — het tweede koolstofatoom van links. Die hangt omhoog. C2 heeft nog één H.",
+    draw:()=>{ const cy=55; return makeSVG(295,100,[A(0,18,cy,'CH₃'),A(1,62,cy,'CH'),A(2,106,cy,'CH₂'),A(3,150,cy,'CH₂'),A(4,196,cy,'CH₂'),A(5,238,cy,'CH₃'),A(6,62,cy-YS,'CH₃')],[B(0,1),B(1,2),B(2,3),B(3,4),B(4,5),B(1,6)]); }},
+
+  { naam:"2,2-dimethylpropaan",
+    uitleg:"De langste keten heeft 3 C-atomen (propaan). Op C2 zitten twee methylgroepen (di-methyl): één omhoog, één omlaag. C2 heeft geen H-atomen en vier verbindingen naar andere koolstofatomen.",
+    draw:()=>{ const cx=105,cy=55; return makeSVG(210,120,[A(0,22,cy,'CH₃'),A(1,cx,cy,'C'),A(2,188,cy,'CH₃'),A(3,cx,cy-YS,'CH₃'),A(4,cx,cy+YS,'CH₃')],[B(0,1),B(1,2),B(1,3),B(1,4)]); }},
+
+  { naam:"2,3-dimethylbutaan",
+    uitleg:"De langste keten heeft 4 C-atomen (butaan). Op C2 zit een methylgroep omhoog, op C3 een methylgroep omlaag. Beide middelste C-atomen hebben elk één extra zijketen.",
+    draw:()=>{ const cy=55; return makeSVG(255,115,[A(0,18,cy,'CH₃'),A(1,62,cy,'CH'),A(2,128,cy,'CH'),A(3,188,cy,'CH₃'),A(4,62,cy-YS,'CH₃'),A(5,128,cy+YS,'CH₃')],[B(0,1),B(1,2),B(2,3),B(1,4),B(2,5)]); }},
+
+  { naam:"2,2-dimethylbutaan",
+    uitleg:"De langste keten heeft 4 C-atomen (butaan). Op C2 zitten twee methylgroepen: één omhoog, één omlaag. C2 heeft geen H-atomen. De rest van de keten is gewoon -CH₂-CH₂-CH₃.",
+    draw:()=>{ const cy=55; return makeSVG(295,120,[A(0,18,cy,'CH₃'),A(1,65,cy,'C'),A(2,115,cy,'CH₂'),A(3,165,cy,'CH₂'),A(4,215,cy,'CH₃'),A(5,65,cy-YS,'CH₃'),A(6,65,cy+YS,'CH₃')],[B(0,1),B(1,2),B(2,3),B(3,4),B(1,5),B(1,6)]); }},
+
+  { naam:"2,3-dimethylpentaan",
+    uitleg:"De langste keten heeft 5 C-atomen (pentaan). Op C2 zit een methylgroep omhoog, op C3 een methylgroep omlaag. Let op: de methylgroepen zitten op verschillende C-atomen.",
+    draw:()=>{ const cy=55; return makeSVG(320,115,[A(0,18,cy,'CH₃'),A(1,62,cy,'CH'),A(2,110,cy,'CH'),A(3,158,cy,'CH₂'),A(4,206,cy,'CH₂'),A(5,252,cy,'CH₃'),A(6,62,cy-YS,'CH₃'),A(7,110,cy+YS,'CH₃')],[B(0,1),B(1,2),B(2,3),B(3,4),B(4,5),B(1,6),B(2,7)]); }},
+
+  { naam:"2-ethylbutaan",
+    uitleg:"De langste keten heeft 4 C-atomen (butaan). Op C2 zit een ethylgroep (-CH₂-CH₃), een zijketen van twee koolstofatomen. Die hangt omhoog als twee extra C-atomen boven de hoofdketen.",
+    draw:()=>{ const cy=60; return makeSVG(280,130,[A(0,18,cy,'CH₃'),A(1,62,cy,'CH₂'),A(2,110,cy,'CH'),A(3,158,cy,'CH₂'),A(4,204,cy,'CH₃'),A(5,110,cy-YS,'CH₂'),A(6,110,cy-2*YS,'CH₃')],[B(0,1),B(1,2),B(2,3),B(3,4),B(2,5),B(5,6)]); }},
+
+  { naam:"3-ethylpentaan",
+    uitleg:"De langste keten heeft 5 C-atomen (pentaan). Op C3 (het middelste atoom) hangt een ethylgroep (-CH₂-CH₃) omlaag — twee extra C-atomen onder de hoofdketen.",
+    draw:()=>{ const cy=55; return makeSVG(320,125,[A(0,18,cy,'CH₃'),A(1,62,cy,'CH₂'),A(2,110,cy,'CH'),A(3,158,cy,'CH₂'),A(4,206,cy,'CH₂'),A(5,252,cy,'CH₃'),A(6,110,cy+YS,'CH₂'),A(7,110,cy+2*YS,'CH₃')],[B(0,1),B(1,2),B(2,3),B(3,4),B(4,5),B(2,6),B(6,7)]); }},
+
+  { naam:"2-methylbut-2-een",
+    uitleg:"De langste keten heeft 4 C-atomen, met een dubbele binding op C2 (but-2-een). Op C2 zit ook een methylgroep omhoog. C2 heeft dus: binding links, dubbele binding rechts én methylgroep omhoog — geen H-atomen.",
+    draw:()=>{ const cy=55; return makeSVG(270,100,[A(0,18,cy,'CH₃'),A(1,65,cy,'C'),A(2,118,cy,'CH'),A(3,168,cy,'CH₂'),A(4,215,cy,'CH₃'),A(5,65,cy-YS,'CH₃')],[B(0,1),B(1,2,true),B(2,3),B(3,4),B(1,5)]); }},
+
+  { naam:"3-methylbut-1-een",
+    uitleg:"De langste keten heeft 4 C-atomen, dubbele binding bij C1 (but-1-een). Op C3 zit een methylgroep omhoog. Let op: de dubbele binding en de methylgroep zitten op verschillende plaatsen in de keten.",
+    draw:()=>{ const cy=55; return makeSVG(270,100,[A(0,18,cy,'CH₂'),A(1,62,cy,'CH'),A(2,110,cy,'CH'),A(3,160,cy,'CH₂'),A(4,207,cy,'CH₃'),A(5,110,cy-YS,'CH₃')],[B(0,1,true),B(1,2),B(2,3),B(3,4),B(2,5)]); }},
+
+  { naam:"2-methylpent-1-een",
+    uitleg:"De langste keten heeft 5 C-atomen, dubbele binding bij C1 (pent-1-een). Op C2 zit een methylgroep omhoog. C1 is een CH₂= en C2 is een C zonder H-atomen (vier bindingen: links, dubbele binding, rechts, methyl omhoog).",
+    draw:()=>{ const cy=55; return makeSVG(315,100,[A(0,18,cy,'CH₂'),A(1,65,cy,'C'),A(2,115,cy,'CH₂'),A(3,163,cy,'CH₂'),A(4,211,cy,'CH₂'),A(5,258,cy,'CH₃'),A(6,65,cy-YS,'CH₃')],[B(0,1,true),B(1,2),B(2,3),B(3,4),B(4,5),B(1,6)]); }},
+
+  { naam:"4-methylpent-2-een",
+    uitleg:"De langste keten heeft 5 C-atomen, dubbele binding bij C2 (pent-2-een). Op C4 hangt een methylgroep omlaag. De dubbele binding en de vertakking zitten dus op verschillende plaatsen: C2–C3 dubbel, C4 heeft de methyl.",
+    draw:()=>{ const cy=55; return makeSVG(315,110,[A(0,18,cy,'CH₃'),A(1,62,cy,'CH'),A(2,110,cy,'CH'),A(3,158,cy,'CH'),A(4,206,cy,'CH₂'),A(5,252,cy,'CH₃'),A(6,158,cy+YS,'CH₃')],[B(0,1),B(1,2,true),B(2,3),B(3,4),B(4,5),B(3,6)]); }},
+
+  { naam:"2,3-dimethylbut-2-een",
+    uitleg:"De langste keten heeft 4 C-atomen, dubbele binding bij C2 (but-2-een). Zowel C2 als C3 hebben een methylgroep — één omhoog, één omlaag. Beide C-atomen van de dubbele binding hebben geen H-atomen.",
+    draw:()=>{ const cy=60; return makeSVG(270,125,[A(0,18,cy,'CH₃'),A(1,65,cy,'C'),A(2,118,cy,'C'),A(3,165,cy,'CH₂'),A(4,212,cy,'CH₃'),A(5,65,cy-YS,'CH₃'),A(6,118,cy+YS,'CH₃')],[B(0,1),B(1,2,true),B(2,3),B(3,4),B(1,5),B(2,6)]); }},
+
+  { naam:"buta-1,3-dieen",
+    uitleg:"De hoofdketen heeft 4 C-atomen (buta-) met twee dubbele bindingen (-dieen) op posities C1 en C3. Alle vier koolstofatomen zitten in de dubbele bindingen: CH₂=CH-CH=CH₂.",
+    draw:()=>{ const cy=35; return makeSVG(210,70,[A(0,18,cy,'CH₂'),A(1,62,cy,'CH'),A(2,106,cy,'CH'),A(3,150,cy,'CH₂')],[B(0,1,true),B(1,2),B(2,3,true)]); }},
+
+  { naam:"penta-1,3-dieen",
+    uitleg:"De hoofdketen heeft 5 C-atomen (penta-) met twee dubbele bindingen op C1 en C3. De keten is CH₂=CH-CH=CH-CH₃. C5 is een gewone CH₃-groep.",
+    draw:()=>{ const cy=35; return makeSVG(255,70,[A(0,18,cy,'CH₂'),A(1,62,cy,'CH'),A(2,106,cy,'CH'),A(3,150,cy,'CH'),A(4,196,cy,'CH₃')],[B(0,1,true),B(1,2),B(2,3,true),B(3,4)]); }},
+
+  { naam:"2-methylbuta-1,3-dieen",
+    uitleg:"De hoofdketen heeft 4 C-atomen met twee dubbele bindingen op C1 en C3 (buta-1,3-dieen). Op C2 zit een methylgroep omhoog. C2 heeft geen H-atomen: het heeft een dubbele binding naar C1, een enkele binding naar C3 én de methylgroep.",
+    draw:()=>{ const cy=55; return makeSVG(250,100,[A(0,18,cy,'CH₂'),A(1,65,cy,'C'),A(2,115,cy,'CH'),A(3,163,cy,'CH₂'),A(4,65,cy-YS,'CH₃')],[B(0,1,true),B(1,2),B(2,3,true),B(1,4)]); }},
+
+  { naam:"2,3,3-trimethylbutaan",
+    uitleg:"De hoofdketen heeft 4 C-atomen (butaan). Op C2 zit één methylgroep, op C3 zitten twee methylgroepen (tri-methyl totaal). C3 heeft geen H-atomen meer: het heeft vier bindingen naar andere koolstofatomen.",
+    draw:()=>{ const cy=60; return makeSVG(280,130,[A(0,18,cy,'CH₃'),A(1,70,cy,'CH'),A(2,140,cy,'C'),A(3,210,cy,'CH₃'),A(4,70,cy-YS,'CH₃'),A(5,140,cy-YS,'CH₃'),A(6,140,cy+YS,'CH₃')],[B(0,1),B(1,2),B(2,3),B(1,4),B(2,5),B(2,6)]); }},
 ];
 
+// ── STATE ──────────────────────────────────────────────────────────────────
 let mode = 'naam2formule';
 let qi = 0;
-let answered = new Array(25).fill(null);
+let answered = new Array(25).fill(null); // null | {result:'correct'|'wrong', chosenIdx, correctIdx}
 let correct = 0;
 let total = 0;
 let currentOpts = [];
@@ -390,10 +326,10 @@ function shuffle(arr) {
 }
 
 function setMode(m) {
-  mode = m;
+  mode=m;
   document.getElementById('btn-n2f').className='mode-btn'+(m==='naam2formule'?' active':'');
   document.getElementById('btn-f2n').className='mode-btn'+(m==='formule2naam'?' active':'');
-  document.getElementById('q-label').textContent = m==='naam2formule'
+  document.getElementById('q-label').textContent=m==='naam2formule'
     ? 'Welke structuurformule hoort bij deze naam?'
     : 'Welke naam hoort bij deze structuurformule?';
   resetAll();
@@ -401,85 +337,113 @@ function setMode(m) {
 
 function resetAll() {
   correct=0; total=0;
-  answered = new Array(25).fill(null);
+  answered=new Array(25).fill(null);
   document.getElementById('score-display').textContent='0/0';
-  qi=0;
-  renderQ();
+  qi=0; renderQ();
 }
 
 function renderQ() {
-  const mol = molecules[qi];
-  document.getElementById('progress-label').textContent = `${qi+1} / 25`;
-  document.getElementById('feedback').textContent = '';
-  document.getElementById('feedback').className = 'feedback';
-
+  const mol=molecules[qi];
+  document.getElementById('progress-label').textContent=`${qi+1} / 25`;
+  document.getElementById('feedback-ok').style.display='none';
+  document.getElementById('uitleg-blok').style.display='none';
   updateDots();
 
-  const distIdx = shuffle(molecules.map((_,i)=>i).filter(i=>i!==qi)).slice(0,3);
-  currentOpts = shuffle([qi,...distIdx]);
+  // Fresh distractors each render (but locked after answer)
+  const state=answered[qi];
+  if(!state) {
+    const distIdx=shuffle(molecules.map((_,i)=>i).filter(i=>i!==qi)).slice(0,3);
+    currentOpts=shuffle([qi,...distIdx]);
+  }
 
-  const qArea = document.getElementById('question-area');
-  const oArea = document.getElementById('options-area');
+  const qArea=document.getElementById('question-area');
+  const oArea=document.getElementById('options-area');
 
   if(mode==='naam2formule') {
-    qArea.innerHTML = `<div class="q-naam">${mol.naam}</div>`;
+    qArea.innerHTML=`<div class="q-naam">${mol.naam}</div>`;
     oArea.innerHTML='';
-    currentOpts.forEach(midx => {
+    currentOpts.forEach(midx=>{
       const btn=document.createElement('button');
       btn.className='opt-btn';
       btn.innerHTML=molecules[midx].draw();
-      applyAnsweredState(btn, midx, answered[qi]);
+      btn.disabled=!!state;
+      if(state) applyState(btn, midx, state);
       btn.onclick=()=>handleAnswer(midx===qi, btn, midx);
       oArea.appendChild(btn);
     });
   } else {
     qArea.innerHTML=`<div class="svg-wrap">${mol.draw()}</div>`;
     oArea.innerHTML='';
-    currentOpts.forEach(midx => {
+    currentOpts.forEach(midx=>{
       const btn=document.createElement('button');
       btn.className='opt-btn';
       btn.textContent=molecules[midx].naam;
-      applyAnsweredState(btn, midx, answered[qi]);
+      btn.disabled=!!state;
+      if(state) applyState(btn, midx, state);
       btn.onclick=()=>handleAnswer(midx===qi, btn, midx);
       oArea.appendChild(btn);
     });
   }
 
-  if(answered[qi]) {
-    document.getElementById('options-area').querySelectorAll('.opt-btn').forEach(b=>b.disabled=true);
-    const fb=document.getElementById('feedback');
-    if(answered[qi]==='correct'){fb.textContent='✓ Goed!';fb.className='feedback goed';}
-    else{fb.textContent='✗ Niet correct. Het juiste antwoord is blauw gemarkeerd.';fb.className='feedback fout';}
+  if(state) showFeedback(state);
+}
+
+function applyState(btn, midx, state) {
+  if(midx===qi) {
+    btn.classList.add(state.result==='correct'?'correct':'reveal');
+  } else if(midx===state.chosenIdx && state.result==='wrong') {
+    btn.classList.add('wrong');
   }
 }
 
-function applyAnsweredState(btn, midx, state) {
-  if(!state) return;
-  btn.disabled=true;
-  if(midx===qi) { btn.classList.add('reveal'); }
-}
-
-function handleAnswer(isCorrect, btn, midx) {
+function handleAnswer(isCorrect, btn, chosenIdx) {
   if(answered[qi]) return;
   total++;
   const btns=Array.from(document.getElementById('options-area').querySelectorAll('.opt-btn'));
   btns.forEach(b=>b.disabled=true);
-  const fb=document.getElementById('feedback');
+
   if(isCorrect) {
     btn.classList.add('correct');
     correct++;
-    answered[qi]='correct';
-    fb.textContent='✓ Goed!';
-    fb.className='feedback goed';
+    answered[qi]={result:'correct', chosenIdx, correctIdx:qi};
   } else {
     btn.classList.add('wrong');
-    answered[qi]='wrong';
+    // reveal correct
     btns.forEach((b,i)=>{ if(currentOpts[i]===qi) b.classList.add('reveal'); });
-    fb.textContent='✗ Niet correct. Het juiste antwoord is blauw gemarkeerd.';
-    fb.className='feedback fout';
+    answered[qi]={result:'wrong', chosenIdx, correctIdx:qi};
   }
+
   document.getElementById('score-display').textContent=`${correct}/${total}`;
+  showFeedback(answered[qi]);
   updateDots();
+}
+
+function showFeedback(state) {
+  if(state.result==='correct') {
+    document.getElementById('feedback-ok').style.display='block';
+    document.getElementById('uitleg-blok').style.display='none';
+  } else {
+    document.getElementById('feedback-ok').style.display='none';
+    const blok=document.getElementById('uitleg-blok');
+    blok.style.display='block';
+
+    const chosenMol=molecules[state.chosenIdx];
+    const correctMol=molecules[state.correctIdx];
+
+    if(mode==='naam2formule') {
+      // Question was: "naam X, kies formule" — chosen was a wrong formula
+      document.getElementById('uitleg-fout-tekst').textContent=
+        `Jij koos de structuurformule van ${chosenMol.naam}. ${chosenMol.uitleg}`;
+      document.getElementById('uitleg-goed-tekst').textContent=
+        `De goede formule hoort bij ${correctMol.naam}. ${correctMol.uitleg}`;
+    } else {
+      // Question was: "formule X, kies naam" — chosen was a wrong name
+      document.getElementById('uitleg-fout-tekst').textContent=
+        `Jij koos "${chosenMol.naam}". ${chosenMol.uitleg}`;
+      document.getElementById('uitleg-goed-tekst').textContent=
+        `De juiste naam is "${correctMol.naam}". ${correctMol.uitleg}`;
+    }
+  }
 }
 
 function updateDots() {
@@ -488,9 +452,10 @@ function updateDots() {
   for(let i=0;i<25;i++){
     const d=document.createElement('div');
     d.className='dot';
+    const s=answered[i];
     if(i===qi) d.classList.add('current');
-    else if(answered[i]==='correct') d.classList.add('ok');
-    else if(answered[i]==='wrong') d.classList.add('mis');
+    else if(s&&s.result==='correct') d.classList.add('ok');
+    else if(s&&s.result==='wrong') d.classList.add('mis');
     cont.appendChild(d);
   }
 }
